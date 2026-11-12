@@ -1,0 +1,7 @@
+# raw data: download from Kaggle (see README)
+data/
+# rebuilt by run_sql.py
+olist.duckdb
+olist.duckdb.wal
+__pycache__/
+.DS_Store

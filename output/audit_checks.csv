@@ -1,0 +1,11 @@
+check_name,actual,expected,result
+orders_clean has one row per order,0.0,0.0,PASS
+deliveries has one row per order,0.0,0.0,PASS
+reviews_dedup has one row per order,0.0,0.0,PASS
+customer_id -> customer join is 1:1,0.0,0.0,PASS
+category revenue reconciles to order revenue (R$ diff),0.0,0.0,PASS
+Q1 monthly revenue sums to orders_clean total (R$ diff),0.0,0.0,PASS
+no orders outside Jan-2017..Aug-2018 window,0.0,0.0,PASS
+no canceled/unavailable orders in revenue,0.0,0.0,PASS
+no deliveries before purchase,0.0,0.0,PASS
+cohort sizes sum to total customers,0.0,0.0,PASS
