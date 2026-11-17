@@ -1,0 +1,75 @@
+revenue_rank,category,revenue,orders,revenue_share_pct,rev_jan_aug_2017,rev_jan_aug_2018,yoy_growth_pct,platform_growth_pct,share_change_pp,trend
+1,health_beauty,1251145.54,8757,9.30,247457.95,770002.81,211.2,138.3,2.46,gaining share
+2,watches_gifts,1194824.97,5599,8.88,206284.44,708305.95,243.4,138.3,2.95,gaining share
+3,bed_bath_table,1035485.07,9394,7.70,259621.24,537514.13,107.0,138.3,-1.10,losing share
+4,sports_leisure,977728.77,7656,7.27,224596.75,530182.18,136.1,138.3,-0.07,stable share
+5,computers_accessories,902922.70,6636,6.71,219638.68,502432.09,128.8,138.3,-0.29,losing share
+6,furniture_decor,721584.27,6373,5.37,180301.14,385312.01,113.7,138.3,-0.60,losing share
+7,housewares,625538.73,5838,4.65,131132.61,397688.06,203.3,138.3,1.16,gaining share
+8,cool_stuff,619724.39,3609,4.61,211947.62,230752.41,8.9,138.3,-3.74,losing share
+9,auto,585177.48,3863,4.35,128278.06,346632.44,170.2,138.3,0.56,gaining share
+10,garden_tools,479650.06,3500,3.57,143767.89,214518.33,49.2,138.3,-1.74,losing share
+11,toys,475702.04,3833,3.54,119703.01,169710.67,41.8,138.3,-1.57,losing share
+12,baby,408941.03,2859,3.04,70328.57,256086.70,264.1,138.3,1.21,gaining share
+13,perfumery,391770.21,3120,2.91,123489.57,176944.81,43.3,138.3,-1.60,losing share
+14,telephony,322082.46,4175,2.39,60745.02,179751.54,195.9,138.3,0.48,gaining share
+15,office_furniture,272279.82,1266,2.02,76897.67,143270.11,86.3,138.3,-0.54,losing share
+16,stationery,229593.84,2299,1.71,37276.56,135468.72,263.4,138.3,0.64,gaining share
+17,computers,222963.13,181,1.66,39448.99,63732.34,61.6,138.3,-0.41,losing share
+18,pet_shop,213076.95,1702,1.58,49750.29,128053.24,157.4,138.3,0.13,stable share
+19,small_appliances,187907.26,622,1.40,66547.03,87850.96,32.0,138.3,-0.96,losing share
+20,musical_instruments,187788.44,620,1.40,37431.40,107746.08,187.8,138.3,0.25,gaining share
+21,unknown,178506.66,1435,1.33,50715.54,73273.99,44.5,138.3,-0.65,losing share
+22,electronics,156971.55,2542,1.17,29614.23,101000.39,241.1,138.3,0.41,gaining share
+23,fashion_bags_accessories,151238.55,1850,1.12,38137.63,70182.19,84.0,138.3,-0.28,losing share
+24,consoles_games,151045.01,1044,1.12,46956.32,63775.71,35.8,138.3,-0.66,losing share
+25,construction_tools_construction,144550.19,746,1.07,3511.49,124349.41,3441.2,138.3,1.58,too small to judge
+26,luggage_accessories,140111.38,1030,1.04,51223.31,64023.09,25.0,138.3,-0.79,losing share
+27,home_appliances_2,110649.74,231,0.82,12470.82,86902.86,596.8,138.3,0.78,too small to judge
+28,home_construction,83010.12,489,0.62,6721.45,59057.67,778.6,138.3,0.59,too small to judge
+29,home_appliances,80001.24,762,0.59,14232.62,56150.41,294.5,138.3,0.30,too small to judge
+30,agro_industry_and_commerce,72530.47,182,0.54,4610.74,43351.27,840.2,138.3,0.44,too small to judge
+31,furniture_living_room,68638.56,420,0.51,23668.79,33632.15,42.1,138.3,-0.31,losing share
+32,home_confort,58572.04,397,0.44,21863.26,20883.45,-4.5,138.3,-0.43,losing share
+33,fixed_telephony,57119.33,209,0.42,10726.40,27005.39,151.8,138.3,0.02,too small to judge
+34,air_conditioning,53016.07,246,0.39,19214.12,24864.96,29.4,138.3,-0.28,too small to judge
+35,audio,50511.61,347,0.38,7815.34,32960.94,321.7,138.3,0.20,too small to judge
+36,small_appliances_home_oven_and_coffee,47445.71,75,0.35,180.96,46623.76,25664.7,138.3,0.63,too small to judge
+37,kitchen_dining_laundry_garden_furniture,45925.37,245,0.34,5399.26,27348.73,406.5,138.3,0.20,too small to judge
+38,books_general_interest,45502.79,504,0.34,11853.89,26966.09,127.5,138.3,-0.02,too small to judge
+39,construction_tools_lights,40002.00,243,0.30,949.00,35948.52,3688.0,138.3,0.46,too small to judge
+40,construction_tools_safety,39589.02,165,0.29,767.90,31324.22,3979.2,138.3,0.40,too small to judge
+41,industry_commerce_and_business,39310.01,232,0.29,2356.63,30573.44,1197.3,138.3,0.34,too small to judge
+42,food,29163.61,448,0.22,5403.77,20425.72,278.0,138.3,0.10,too small to judge
+43,market_place,26982.28,272,0.20,15190.73,7565.57,-50.2,138.3,-0.39,too small to judge
+44,costruction_tools_garden,25552.18,192,0.19,5585.99,16774.39,200.3,138.3,0.05,too small to judge
+45,art,24167.64,201,0.18,8363.95,14875.85,77.9,138.3,-0.07,too small to judge
+46,fashion_shoes,23322.89,237,0.17,8978.90,8496.67,-5.4,138.3,-0.18,too small to judge
+47,drinks,22378.71,296,0.17,1197.66,17424.64,1354.9,138.3,0.20,too small to judge
+48,signaling_and_security,21509.23,140,0.16,1893.80,17066.24,801.2,138.3,0.17,too small to judge
+49,furniture_bedroom,20028.78,95,0.15,5886.11,11181.17,90.0,138.3,-0.04,too small to judge
+50,books_technical,18829.06,259,0.14,2441.28,13066.84,435.2,138.3,0.10,too small to judge
+51,costruction_tools_tools,15903.95,97,0.12,1532.90,11816.66,670.9,138.3,0.11,too small to judge
+52,food_drink,15119.48,225,0.11,1270.40,7696.74,505.9,138.3,0.06,too small to judge
+53,fashion_male_clothing,10723.92,110,0.08,4870.87,2301.87,-52.7,138.3,-0.13,too small to judge
+54,fashion_underwear_beach,9541.55,121,0.07,2700.35,2469.00,-8.6,138.3,-0.05,too small to judge
+55,christmas_supplies,8787.83,127,0.07,377.69,5945.90,1474.3,138.3,0.07,too small to judge
+56,tablets_printing_image,7528.41,79,0.06,5157.75,1267.96,-75.4,138.3,-0.15,too small to judge
+57,cine_photo,6933.46,65,0.05,315.00,6238.46,1880.5,138.3,0.07,too small to judge
+58,music,6034.35,38,0.04,1503.49,4475.96,197.7,138.3,0.01,too small to judge
+59,books_imported,4639.85,53,0.03,278.99,3515.86,1160.2,138.3,0.04,too small to judge
+60,dvds_blu_ray,4559.49,57,0.03,3012.69,1132.71,-62.4,138.3,-0.08,too small to judge
+61,party_supplies,4485.18,39,0.03,69.90,2621.79,3650.8,138.3,0.03,too small to judge
+62,furniture_mattress_and_upholstery,4368.08,38,0.03,1324.08,1819.80,37.4,138.3,-0.02,too small to judge
+63,portateis_cozinha_e_preparadores_de_alimentos,3933.63,13,0.03,0.00,3933.63,,138.3,0.05,too small to judge
+64,fashio_female_clothing,2748.74,38,0.02,1696.50,616.66,-63.7,138.3,-0.05,too small to judge
+65,fashion_sport,2119.51,27,0.02,1185.71,369.50,-68.8,138.3,-0.03,too small to judge
+66,la_cuisine,2054.99,13,0.02,999.99,781.00,-21.9,138.3,-0.02,too small to judge
+67,arts_and_craftmanship,1814.01,23,0.01,151.89,1662.12,994.3,138.3,0.02,too small to judge
+68,diapers_and_hygiene,1403.89,25,0.01,0.00,1327.89,,138.3,0.02,too small to judge
+69,pc_gamer,1306.95,7,0.01,519.96,786.99,51.4,138.3,-0.01,too small to judge
+70,flowers,1110.04,29,0.01,0.00,839.54,,138.3,0.01,too small to judge
+71,home_comfort_2,760.27,24,0.01,493.08,151.09,-69.4,138.3,-0.01,too small to judge
+72,cds_dvds_musicals,730.00,12,0.01,360.00,65.00,-81.9,138.3,-0.01,too small to judge
+73,fashion_childrens_clothes,569.85,8,0.00,269.90,169.97,-37.0,138.3,-0.01,too small to judge
+74,security_and_services,283.29,2,0.00,183.29,0.00,-100.0,138.3,-0.01,too small to judge

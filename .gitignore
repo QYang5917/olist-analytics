@@ -8,3 +8,7 @@ __pycache__/
 # Tableau recovery files
 .~*.twbr
 hyperd.log
+# Snowflake: connection settings, private keys and the local Python environment
+.env
+*.p8
+.venv/

@@ -4,7 +4,7 @@ A SQL-first analysis of ~100k orders from Olist, a Brazilian online marketplace,
 
 **Live dashboard:** [Landing Page A/B Test on Tableau Public](https://public.tableau.com/app/profile/qingyao.yang/viz/LandingPageABTest_17948802889870/ABtestdashboard)
 
-**Skills shown:** CTEs, joins at the right grain, window functions (`LAG`, `RANK`, `ROW_NUMBER`, running totals, `CORR() OVER`), cohort analysis, hypothesis testing, power analysis, and a documented data-quality audit.
+**Skills shown:** CTEs, joins at the right grain, window functions (`LAG`, `RANK`, `ROW_NUMBER`, running totals, `CORR() OVER`), cohort analysis, hypothesis testing, power analysis, and a documented data-quality audit, plus the same SQL ported to Snowflake and verified against DuckDB.
 
 ---
 
@@ -92,6 +92,26 @@ python ab_test.py     # A/B test (needs data/ab_data.csv)
 
 **Output** (one tidy CSV per question, ready for Tableau): `output/q1_monthly_revenue.csv`, `q2_category_revenue.csv`, `q3a_repeat_purchase_rate.csv`, `q3b_cohort_retention.csv` (long format; pivot `month_number` in Tableau for a cohort heatmap), `q4a_late_vs_ontime.csv`, `q4b_score_by_days_late.csv`, `q4c_late_gap_by_state.csv`, `q5_state_delivery_reviews.csv`, `audit_checks.csv`, and `ab_*.csv`.
 
+## Running on Snowflake
+
+The same analysis also runs on Snowflake. Every file in `sql/` has a Snowflake version in [`snowflake/`](snowflake/) with the same logic, and the results match DuckDB on **all 2,600 cells across 12 result files** ([verification](snowflake/VERIFICATION.md)).
+
+- **Setup** ([00_setup.sql](snowflake/00_setup.sql)): an X-Small warehouse with `AUTO_SUSPEND = 60` and `AUTO_RESUME = TRUE`, so compute is billed only while queries run, plus database `OLIST` and schema `RAW`.
+- **Loading** ([00_load.sql](snowflake/00_load.sql), [load_data.py](snowflake/load_data.py)): the CSVs are uploaded to an internal stage with `PUT` and loaded with `COPY INTO`. Row counts are checked against the CSVs: 10 tables, 1,845,400 rows.
+- **Dialect changes** ([DIALECT_NOTES.md](snowflake/DIALECT_NOTES.md)): ten differences, each explained, such as `FILTER (WHERE ...)` → `COUNT_IF` / `CASE WHEN`, `DATE_DIFF` → `DATEDIFF`, and `DESC` → `DESC NULLS LAST`.
+- **One difference found by testing:** Snowflake's `AVG` of integers keeps 6 decimals, where DuckDB's returns a full-precision double. That moved one rounded value by 0.001 until the averages were cast to `FLOAT`.
+- **Authentication:** key-pair. No password is stored; connection settings live in a git-ignored `.env`.
+
+```bash
+python -m venv .venv && .venv/bin/pip install -r snowflake/requirements.txt
+cp .env.example .env                      # fill in your account identifier and username
+bash snowflake/setup_key.sh               # makes a key pair; run the copied ALTER USER in Snowsight
+.venv/bin/python snowflake/run_file.py snowflake/00_setup.sql
+.venv/bin/python snowflake/load_data.py           # upload + COPY INTO + row-count check
+.venv/bin/python snowflake/run_snowflake.py       # run every query, write snowflake/output/*.csv
+python snowflake/compare_results.py               # compare with DuckDB's output/
+```
+
 ## Repository layout
 
 ```
@@ -105,4 +125,5 @@ ab_test.py                z-test, confidence intervals, power
 run_sql.py                runs the SQL and exports CSVs (no analysis logic)
 docs/                     audit, A/B report, SQL walkthrough, interview prep
 tableau/                  A/B dashboard data: prep script, CSVs, Tableau build guide
+snowflake/                the same SQL for Snowflake: setup, load, converted queries, verification
 ```

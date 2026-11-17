@@ -1,0 +1,6 @@
+stage,rows_,users
+raw data,294478,290584
+mismatched rows (group != page),3893,3893
+users who saw both pages (dropped entirely),3996,1998
+users with 2+ rows (all causes),7788,3894
+clean: one row per user,288586,288586
