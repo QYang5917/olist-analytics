@@ -1,11 +1,27 @@
 <?xml version='1.0' encoding='utf-8' ?>
 
-<workbook xmlns:user="http://www.tableausoftware.com/xml/user" original-version="26.1" source-build="0.0.0 (0000.0.0.0)" source-platform="mac" version="26.1">
+<workbook xmlns:user="http://www.tableausoftware.com/xml/user" source-build="0.0.0 (0000.0.0.0)" source-platform="mac" version="18.1">
   <document-format-change-manifest>
-    <ManifestByVersion />
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.ExplainData_AuthorControls.true...ExplainData_AuthorControls />
+    <_.fcp.ExplainData_NullValueExplanation.true...ExplainData_NullValueExplanation />
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <VizInTooltipHideWorksheet />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneFriendlyName />
   </document-format-change-manifest>
   <datasources>
-    <datasource hasconnection="false" inline="true" name="Parameters" version="26.1">
+    <datasource hasconnection="false" inline="true" name="Parameters" version="18.1">
       <aliases enabled="yes" />
       <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
         <calculation class="tableau" formula="&quot;All&quot;" />
@@ -17,25 +33,15 @@
         </members>
       </column>
     </datasource>
-    <datasource caption="lift_by_segment" inline="true" name="federated.9703c9a6259c36c00a5d8d81220a" version="26.1">
+    <datasource caption="lift_by_segment" inline="true" name="federated.9703c9a6259c36c00a5d8d81220a" version="18.1">
       <connection class="federated">
         <named-connections>
-          <named-connection caption="lift_by_segment" name="textscan.d8accfcaef0fa44892b7393c53a5">
-            <connection class="textscan" directory="." filename="lift_by_segment.csv" password="" server="" />
+          <named-connection caption="lift_by_segment" name="hyper.d8accfcaef0fa44892b7393c53a5">
+            <connection authentication="auth-none" author-locale="en_US" class="hyper" dbname="lift_by_segment.hyper" default-settings="yes" port="" sslmode="" username="tableau_internal_user" />
           </named-connection>
         </named-connections>
-        <relation connection="textscan.d8accfcaef0fa44892b7393c53a5" name="lift_by_segment.csv" table="[lift_by_segment#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="string" name="segment_type" ordinal="0" />
-            <column datatype="string" name="segment" ordinal="1" />
-            <column datatype="real" name="control_rate" ordinal="2" />
-            <column datatype="real" name="treatment_rate" ordinal="3" />
-            <column datatype="real" name="diff_pp" ordinal="4" />
-            <column datatype="real" name="diff_ci_lower" ordinal="5" />
-            <column datatype="real" name="diff_ci_upper" ordinal="6" />
-            <column datatype="real" name="p_value" ordinal="7" />
-          </columns>
-        </relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection="hyper.d8accfcaef0fa44892b7393c53a5" name="Extract" table="[Extract].[Extract]" type="table" />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection="hyper.d8accfcaef0fa44892b7393c53a5" name="Extract" table="[Extract].[Extract]" type="table" />
       </connection>
       <aliases enabled="yes" />
       <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
@@ -52,7 +58,7 @@
       <column caption="diff_ci_width" datatype="real" name="[Calculation_206078412205769797]" role="measure" type="quantitative" default-format="n#,##0.00;-#,##0.00">
         <calculation class="tableau" formula="[diff_ci_upper] - [diff_ci_lower]" />
       </column>
-      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" _.fcp.SchemaViewerObjectModel.false...dim-percentage="0.5" _.fcp.SchemaViewerObjectModel.false...measure-percentage="0.5" />
       <datasource-dependencies datasource="Parameters">
         <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
           <calculation class="tableau" formula="&quot;All&quot;" />
@@ -64,46 +70,25 @@
           </members>
         </column>
       </datasource-dependencies>
-      <object-graph>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
         <objects>
-          <object caption="lift_by_segment.csv" id="lift_by_segment.csv_B67A5703AF707CE9FAF5D7A67712CD45">
+          <object caption="lift_by_segment" id="lift_by_segment_B67A5703AF707CE9FAF5D7A67712CD45">
             <properties context="">
-              <relation connection="textscan.d8accfcaef0fa44892b7393c53a5" name="lift_by_segment.csv" table="[lift_by_segment#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="string" name="segment_type" ordinal="0" />
-                  <column datatype="string" name="segment" ordinal="1" />
-                  <column datatype="real" name="control_rate" ordinal="2" />
-                  <column datatype="real" name="treatment_rate" ordinal="3" />
-                  <column datatype="real" name="diff_pp" ordinal="4" />
-                  <column datatype="real" name="diff_ci_lower" ordinal="5" />
-                  <column datatype="real" name="diff_ci_upper" ordinal="6" />
-                  <column datatype="real" name="p_value" ordinal="7" />
-                </columns>
-              </relation>
+              <relation connection="hyper.d8accfcaef0fa44892b7393c53a5" name="Extract" table="[Extract].[Extract]" type="table" />
             </properties>
           </object>
         </objects>
-      </object-graph>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
     </datasource>
-    <datasource caption="conversion_by_segment" inline="true" name="federated.485f6aefcc5ed704861de4cb3f68" version="26.1">
+    <datasource caption="conversion_by_segment" inline="true" name="federated.485f6aefcc5ed704861de4cb3f68" version="18.1">
       <connection class="federated">
         <named-connections>
-          <named-connection caption="conversion_by_segment" name="textscan.b5db77d409a249db0f6f9be14294">
-            <connection class="textscan" directory="." filename="conversion_by_segment.csv" password="" server="" />
+          <named-connection caption="conversion_by_segment" name="hyper.b5db77d409a249db0f6f9be14294">
+            <connection authentication="auth-none" author-locale="en_US" class="hyper" dbname="conversion_by_segment.hyper" default-settings="yes" port="" sslmode="" username="tableau_internal_user" />
           </named-connection>
         </named-connections>
-        <relation connection="textscan.b5db77d409a249db0f6f9be14294" name="conversion_by_segment.csv" table="[conversion_by_segment#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="string" name="segment_type" ordinal="0" />
-            <column datatype="string" name="segment" ordinal="1" />
-            <column datatype="string" name="test_group" ordinal="2" />
-            <column datatype="integer" name="users" ordinal="3" />
-            <column datatype="integer" name="conversions" ordinal="4" />
-            <column datatype="real" name="conversion_rate" ordinal="5" />
-            <column datatype="real" name="ci_lower" ordinal="6" />
-            <column datatype="real" name="ci_upper" ordinal="7" />
-          </columns>
-        </relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection="hyper.b5db77d409a249db0f6f9be14294" name="Extract" table="[Extract].[Extract]" type="table" />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection="hyper.b5db77d409a249db0f6f9be14294" name="Extract" table="[Extract].[Extract]" type="table" />
       </connection>
       <aliases enabled="yes" />
       <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
@@ -121,7 +106,7 @@
         <calculation class="tableau" formula="[ci_upper] - [ci_lower]" />
       </column>
       <column-instance column="[test_group]" derivation="None" name="[none:test_group:nk]" pivot="key" type="nominal" />
-      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" _.fcp.SchemaViewerObjectModel.false...dim-percentage="0.5" _.fcp.SchemaViewerObjectModel.false...measure-percentage="0.5" />
       <style>
         <style-rule element="mark">
           <encoding attr="color" field="[none:test_group:nk]" type="palette">
@@ -145,45 +130,25 @@
           </members>
         </column>
       </datasource-dependencies>
-      <object-graph>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
         <objects>
-          <object caption="conversion_by_segment.csv" id="conversion_by_segment.csv_AC9D7C3464F8F4CF9DF5D1F0AE7F8E90">
+          <object caption="conversion_by_segment" id="conversion_by_segment_AC9D7C3464F8F4CF9DF5D1F0AE7F8E90">
             <properties context="">
-              <relation connection="textscan.b5db77d409a249db0f6f9be14294" name="conversion_by_segment.csv" table="[conversion_by_segment#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="string" name="segment_type" ordinal="0" />
-                  <column datatype="string" name="segment" ordinal="1" />
-                  <column datatype="string" name="test_group" ordinal="2" />
-                  <column datatype="integer" name="users" ordinal="3" />
-                  <column datatype="integer" name="conversions" ordinal="4" />
-                  <column datatype="real" name="conversion_rate" ordinal="5" />
-                  <column datatype="real" name="ci_lower" ordinal="6" />
-                  <column datatype="real" name="ci_upper" ordinal="7" />
-                </columns>
-              </relation>
+              <relation connection="hyper.b5db77d409a249db0f6f9be14294" name="Extract" table="[Extract].[Extract]" type="table" />
             </properties>
           </object>
         </objects>
-      </object-graph>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
     </datasource>
-    <datasource caption="daily_conversion" inline="true" name="federated.a1be0ce729a3f78201e734da8258" version="26.1">
+    <datasource caption="daily_conversion" inline="true" name="federated.a1be0ce729a3f78201e734da8258" version="18.1">
       <connection class="federated">
         <named-connections>
-          <named-connection caption="daily_conversion" name="textscan.0f1aee9c0bed0a32b8e4d975d413">
-            <connection class="textscan" directory="." filename="daily_conversion.csv" password="" server="" />
+          <named-connection caption="daily_conversion" name="hyper.0f1aee9c0bed0a32b8e4d975d413">
+            <connection authentication="auth-none" author-locale="en_US" class="hyper" dbname="daily_conversion.hyper" default-settings="yes" port="" sslmode="" username="tableau_internal_user" />
           </named-connection>
         </named-connections>
-        <relation connection="textscan.0f1aee9c0bed0a32b8e4d975d413" name="daily_conversion.csv" table="[daily_conversion#csv]" type="table">
-          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-            <column datatype="string" name="segment_type" ordinal="0" />
-            <column datatype="string" name="segment" ordinal="1" />
-            <column datatype="string" name="test_group" ordinal="2" />
-            <column datatype="date" name="date" ordinal="3" />
-            <column datatype="integer" name="users" ordinal="4" />
-            <column datatype="integer" name="conversions" ordinal="5" />
-            <column datatype="real" name="conversion_rate" ordinal="6" />
-          </columns>
-        </relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection="hyper.0f1aee9c0bed0a32b8e4d975d413" name="Extract" table="[Extract].[Extract]" type="table" />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection="hyper.0f1aee9c0bed0a32b8e4d975d413" name="Extract" table="[Extract].[Extract]" type="table" />
       </connection>
       <aliases enabled="yes" />
       <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
@@ -197,7 +162,7 @@
         <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
       </column>
       <column-instance column="[test_group]" derivation="None" name="[none:test_group:nk]" pivot="key" type="nominal" />
-      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" _.fcp.SchemaViewerObjectModel.false...dim-percentage="0.5" _.fcp.SchemaViewerObjectModel.false...measure-percentage="0.5" />
       <style>
         <style-rule element="mark">
           <encoding attr="color" field="[none:test_group:nk]" type="palette">
@@ -221,25 +186,15 @@
           </members>
         </column>
       </datasource-dependencies>
-      <object-graph>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
         <objects>
-          <object caption="daily_conversion.csv" id="daily_conversion.csv_EBF9EA7EDBE2673EB5D00460194081B3">
+          <object caption="daily_conversion" id="daily_conversion_EBF9EA7EDBE2673EB5D00460194081B3">
             <properties context="">
-              <relation connection="textscan.0f1aee9c0bed0a32b8e4d975d413" name="daily_conversion.csv" table="[daily_conversion#csv]" type="table">
-                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
-                  <column datatype="string" name="segment_type" ordinal="0" />
-                  <column datatype="string" name="segment" ordinal="1" />
-                  <column datatype="string" name="test_group" ordinal="2" />
-                  <column datatype="date" name="date" ordinal="3" />
-                  <column datatype="integer" name="users" ordinal="4" />
-                  <column datatype="integer" name="conversions" ordinal="5" />
-                  <column datatype="real" name="conversion_rate" ordinal="6" />
-                </columns>
-              </relation>
+              <relation connection="hyper.0f1aee9c0bed0a32b8e4d975d413" name="Extract" table="[Extract].[Extract]" type="table" />
             </properties>
           </object>
         </objects>
-      </object-graph>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
     </datasource>
   </datasources>
   <worksheets>
@@ -285,7 +240,7 @@
             <column-instance column="[treatment_rate]" derivation="Sum" name="[sum:treatment_rate:qk]" pivot="key" type="quantitative" />
           </datasource-dependencies>
           <filter class="categorical" column="[federated.9703c9a6259c36c00a5d8d81220a].[none:Calculation_833196606068161250:nk]">
-            <groupfilter function="member" level="[none:Calculation_833196606068161250:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+            <groupfilter function="member" level="[none:Calculation_833196606068161250:nk]" member="true" />
           </filter>
           <slices>
             <column>[federated.9703c9a6259c36c00a5d8d81220a].[none:Calculation_833196606068161250:nk]</column>
@@ -387,7 +342,7 @@
             <column-instance column="[users]" derivation="Sum" name="[sum:users:qk]" pivot="key" type="quantitative" />
           </datasource-dependencies>
           <filter class="categorical" column="[federated.485f6aefcc5ed704861de4cb3f68].[none:Calculation_932201977891927153:nk]">
-            <groupfilter function="member" level="[none:Calculation_932201977891927153:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+            <groupfilter function="member" level="[none:Calculation_932201977891927153:nk]" member="true" />
           </filter>
           <slices>
             <column>[federated.485f6aefcc5ed704861de4cb3f68].[none:Calculation_932201977891927153:nk]</column>
@@ -482,7 +437,7 @@
             <column-instance column="[users]" derivation="Sum" name="[sum:users:qk]" pivot="key" type="quantitative" />
           </datasource-dependencies>
           <filter class="categorical" column="[federated.a1be0ce729a3f78201e734da8258].[none:Calculation_976660140413149974:nk]">
-            <groupfilter function="member" level="[none:Calculation_976660140413149974:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+            <groupfilter function="member" level="[none:Calculation_976660140413149974:nk]" member="true" />
           </filter>
           <slices>
             <column>[federated.a1be0ce729a3f78201e734da8258].[none:Calculation_976660140413149974:nk]</column>
@@ -687,7 +642,17 @@
       <simple-id uuid="{BF7318E7-1BE3-5B48-8D19-D61A3CF24136}" />
     </window>
   </windows>
-  <explain-data enabled-for-viewer="true" extreme-values-enabled-for-all="true">
-    <explanation-types />
-  </explain-data>
+  <_.fcp.ExplainData_AuthorControls.true...explain-data enabled-for-viewer="false" extreme-values-enabled-for-all="false">
+    <explanation-types>
+      <explanation-type enabled="true" type="number-of-records" />
+      <explanation-type enabled="true" type="average-of-records" />
+      <explanation-type enabled="true" type="aggregated-dimensions" />
+      <explanation-type enabled="true" type="distribution-of-records" />
+      <explanation-type enabled="true" type="unvisualized-measures" />
+      <explanation-type enabled="true" type="extreme-values" />
+      <_.fcp.ExplainData_NullValueExplanation.true...explanation-type enabled="true" type="null-value" />
+      <explanation-type enabled="true" type="tvd-single-value" />
+      <explanation-type enabled="true" type="ad-single-value" />
+    </explanation-types>
+  </_.fcp.ExplainData_AuthorControls.true...explain-data>
 </workbook>

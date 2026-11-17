@@ -5,3 +5,6 @@ olist.duckdb
 olist.duckdb.wal
 __pycache__/
 .DS_Store
+# Tableau recovery files
+.~*.twbr
+hyperd.log

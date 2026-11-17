@@ -4,6 +4,16 @@ This guide builds a three-chart dashboard from the files in this folder, with on
 
 To regenerate the files: `python tableau/make_tableau_data.py`
 
+## Ready-made workbook
+
+`ab_test_dashboard.twb` in this folder is the finished dashboard described below, so you can open it in Tableau Public and publish without building anything. `ab_test_dashboard_simple.twb` is the same dashboard with plain bar and line charts.
+
+- Tableau Public only opens and publishes workbooks whose data is an extract, so the workbooks read the three `.hyper` files in this folder, not the CSVs. Keep the workbook and the `.hyper` files together.
+- If the CSVs change, rebuild the extracts with `python tableau/make_hyper_extracts.py` (needs `pip install tableauhyperapi`).
+- Tested with Tableau Public 2026.3.
+
+The rest of this guide explains how to build the same dashboard by hand from the CSVs.
+
 ## The files
 
 | File | One row per | Columns |
