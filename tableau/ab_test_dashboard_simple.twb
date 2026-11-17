@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook xmlns:user="http://www.tableausoftware.com/xml/user" original-version="26.1" source-build="0.0.0 (0000.0.0.0)" source-platform="mac" version="26.1">
+  <document-format-change-manifest>
+    <ManifestByVersion />
+  </document-format-change-manifest>
+  <datasources>
+    <datasource hasconnection="false" inline="true" name="Parameters" version="26.1">
+      <aliases enabled="yes" />
+      <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+        <calculation class="tableau" formula="&quot;All&quot;" />
+        <members>
+          <member value="&quot;All&quot;" />
+          <member value="&quot;Country&quot;" />
+          <member value="&quot;Day type&quot;" />
+          <member value="&quot;Test week&quot;" />
+        </members>
+      </column>
+    </datasource>
+    <datasource caption="lift_by_segment" inline="true" name="federated.9703c9a6259c36c00a5d8d81220a" version="26.1">
+      <connection class="federated">
+        <named-connections>
+          <named-connection caption="lift_by_segment" name="textscan.d8accfcaef0fa44892b7393c53a5">
+            <connection class="textscan" directory="." filename="lift_by_segment.csv" password="" server="" />
+          </named-connection>
+        </named-connections>
+        <relation connection="textscan.d8accfcaef0fa44892b7393c53a5" name="lift_by_segment.csv" table="[lift_by_segment#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="segment_type" ordinal="0" />
+            <column datatype="string" name="segment" ordinal="1" />
+            <column datatype="real" name="control_rate" ordinal="2" />
+            <column datatype="real" name="treatment_rate" ordinal="3" />
+            <column datatype="real" name="diff_pp" ordinal="4" />
+            <column datatype="real" name="diff_ci_lower" ordinal="5" />
+            <column datatype="real" name="diff_ci_upper" ordinal="6" />
+            <column datatype="real" name="p_value" ordinal="7" />
+          </columns>
+        </relation>
+      </connection>
+      <aliases enabled="yes" />
+      <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+      <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+      <column datatype="real" name="[control_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column datatype="real" name="[treatment_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column datatype="real" name="[diff_pp]" role="measure" type="quantitative" default-format="n#,##0.00;-#,##0.00" />
+      <column datatype="real" name="[diff_ci_lower]" role="measure" type="quantitative" default-format="n#,##0.00;-#,##0.00" />
+      <column datatype="real" name="[diff_ci_upper]" role="measure" type="quantitative" default-format="n#,##0.00;-#,##0.00" />
+      <column datatype="real" name="[p_value]" role="measure" type="quantitative" default-format="n0.000;-0.000" />
+      <column caption="Show Segment Type" datatype="boolean" name="[Calculation_833196606068161250]" role="dimension" type="nominal">
+        <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+      </column>
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <datasource-dependencies datasource="Parameters">
+        <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+          <calculation class="tableau" formula="&quot;All&quot;" />
+          <members>
+            <member value="&quot;All&quot;" />
+            <member value="&quot;Country&quot;" />
+            <member value="&quot;Day type&quot;" />
+            <member value="&quot;Test week&quot;" />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <object-graph>
+        <objects>
+          <object caption="lift_by_segment.csv" id="lift_by_segment.csv_B67A5703AF707CE9FAF5D7A67712CD45">
+            <properties context="">
+              <relation connection="textscan.d8accfcaef0fa44892b7393c53a5" name="lift_by_segment.csv" table="[lift_by_segment#csv]" type="table">
+                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+                  <column datatype="string" name="segment_type" ordinal="0" />
+                  <column datatype="string" name="segment" ordinal="1" />
+                  <column datatype="real" name="control_rate" ordinal="2" />
+                  <column datatype="real" name="treatment_rate" ordinal="3" />
+                  <column datatype="real" name="diff_pp" ordinal="4" />
+                  <column datatype="real" name="diff_ci_lower" ordinal="5" />
+                  <column datatype="real" name="diff_ci_upper" ordinal="6" />
+                  <column datatype="real" name="p_value" ordinal="7" />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption="conversion_by_segment" inline="true" name="federated.485f6aefcc5ed704861de4cb3f68" version="26.1">
+      <connection class="federated">
+        <named-connections>
+          <named-connection caption="conversion_by_segment" name="textscan.b5db77d409a249db0f6f9be14294">
+            <connection class="textscan" directory="." filename="conversion_by_segment.csv" password="" server="" />
+          </named-connection>
+        </named-connections>
+        <relation connection="textscan.b5db77d409a249db0f6f9be14294" name="conversion_by_segment.csv" table="[conversion_by_segment#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="segment_type" ordinal="0" />
+            <column datatype="string" name="segment" ordinal="1" />
+            <column datatype="string" name="test_group" ordinal="2" />
+            <column datatype="integer" name="users" ordinal="3" />
+            <column datatype="integer" name="conversions" ordinal="4" />
+            <column datatype="real" name="conversion_rate" ordinal="5" />
+            <column datatype="real" name="ci_lower" ordinal="6" />
+            <column datatype="real" name="ci_upper" ordinal="7" />
+          </columns>
+        </relation>
+      </connection>
+      <aliases enabled="yes" />
+      <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+      <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+      <column datatype="string" name="[test_group]" role="dimension" type="nominal" />
+      <column datatype="integer" name="[users]" role="measure" type="quantitative" />
+      <column datatype="integer" name="[conversions]" role="measure" type="quantitative" />
+      <column datatype="real" name="[conversion_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column datatype="real" name="[ci_lower]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column datatype="real" name="[ci_upper]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column caption="Show Segment Type" datatype="boolean" name="[Calculation_932201977891927153]" role="dimension" type="nominal">
+        <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+      </column>
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <datasource-dependencies datasource="Parameters">
+        <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+          <calculation class="tableau" formula="&quot;All&quot;" />
+          <members>
+            <member value="&quot;All&quot;" />
+            <member value="&quot;Country&quot;" />
+            <member value="&quot;Day type&quot;" />
+            <member value="&quot;Test week&quot;" />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <object-graph>
+        <objects>
+          <object caption="conversion_by_segment.csv" id="conversion_by_segment.csv_AC9D7C3464F8F4CF9DF5D1F0AE7F8E90">
+            <properties context="">
+              <relation connection="textscan.b5db77d409a249db0f6f9be14294" name="conversion_by_segment.csv" table="[conversion_by_segment#csv]" type="table">
+                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+                  <column datatype="string" name="segment_type" ordinal="0" />
+                  <column datatype="string" name="segment" ordinal="1" />
+                  <column datatype="string" name="test_group" ordinal="2" />
+                  <column datatype="integer" name="users" ordinal="3" />
+                  <column datatype="integer" name="conversions" ordinal="4" />
+                  <column datatype="real" name="conversion_rate" ordinal="5" />
+                  <column datatype="real" name="ci_lower" ordinal="6" />
+                  <column datatype="real" name="ci_upper" ordinal="7" />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+    <datasource caption="daily_conversion" inline="true" name="federated.a1be0ce729a3f78201e734da8258" version="26.1">
+      <connection class="federated">
+        <named-connections>
+          <named-connection caption="daily_conversion" name="textscan.0f1aee9c0bed0a32b8e4d975d413">
+            <connection class="textscan" directory="." filename="daily_conversion.csv" password="" server="" />
+          </named-connection>
+        </named-connections>
+        <relation connection="textscan.0f1aee9c0bed0a32b8e4d975d413" name="daily_conversion.csv" table="[daily_conversion#csv]" type="table">
+          <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+            <column datatype="string" name="segment_type" ordinal="0" />
+            <column datatype="string" name="segment" ordinal="1" />
+            <column datatype="string" name="test_group" ordinal="2" />
+            <column datatype="date" name="date" ordinal="3" />
+            <column datatype="integer" name="users" ordinal="4" />
+            <column datatype="integer" name="conversions" ordinal="5" />
+            <column datatype="real" name="conversion_rate" ordinal="6" />
+          </columns>
+        </relation>
+      </connection>
+      <aliases enabled="yes" />
+      <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+      <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+      <column datatype="string" name="[test_group]" role="dimension" type="nominal" />
+      <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+      <column datatype="integer" name="[users]" role="measure" type="quantitative" />
+      <column datatype="integer" name="[conversions]" role="measure" type="quantitative" />
+      <column datatype="real" name="[conversion_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+      <column caption="Show Segment Type" datatype="boolean" name="[Calculation_976660140413149974]" role="dimension" type="nominal">
+        <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+      </column>
+      <layout dim-ordering="alphabetic" measure-ordering="alphabetic" show-structure="true" />
+      <datasource-dependencies datasource="Parameters">
+        <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+          <calculation class="tableau" formula="&quot;All&quot;" />
+          <members>
+            <member value="&quot;All&quot;" />
+            <member value="&quot;Country&quot;" />
+            <member value="&quot;Day type&quot;" />
+            <member value="&quot;Test week&quot;" />
+          </members>
+        </column>
+      </datasource-dependencies>
+      <object-graph>
+        <objects>
+          <object caption="daily_conversion.csv" id="daily_conversion.csv_EBF9EA7EDBE2673EB5D00460194081B3">
+            <properties context="">
+              <relation connection="textscan.0f1aee9c0bed0a32b8e4d975d413" name="daily_conversion.csv" table="[daily_conversion#csv]" type="table">
+                <columns character-set="UTF-8" header="yes" locale="en_US" separator=",">
+                  <column datatype="string" name="segment_type" ordinal="0" />
+                  <column datatype="string" name="segment" ordinal="1" />
+                  <column datatype="string" name="test_group" ordinal="2" />
+                  <column datatype="date" name="date" ordinal="3" />
+                  <column datatype="integer" name="users" ordinal="4" />
+                  <column datatype="integer" name="conversions" ordinal="5" />
+                  <column datatype="real" name="conversion_rate" ordinal="6" />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="Lift by segment">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="lift_by_segment" name="federated.9703c9a6259c36c00a5d8d81220a" />
+            <datasource name="Parameters" />
+          </datasources>
+          <datasource-dependencies datasource="Parameters">
+            <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+              <calculation class="tableau" formula="&quot;All&quot;" />
+              <members>
+                <member value="&quot;All&quot;" />
+                <member value="&quot;Country&quot;" />
+                <member value="&quot;Day type&quot;" />
+                <member value="&quot;Test week&quot;" />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource="federated.9703c9a6259c36c00a5d8d81220a">
+            <column caption="Show Segment Type" datatype="boolean" name="[Calculation_833196606068161250]" role="dimension" type="nominal">
+              <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+            </column>
+            <column datatype="real" name="[diff_pp]" role="measure" type="quantitative" default-format="n#,##0.00;-#,##0.00" />
+            <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+            <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+            <column-instance column="[Calculation_833196606068161250]" derivation="None" name="[none:Calculation_833196606068161250:nk]" pivot="key" type="nominal" />
+            <column-instance column="[segment]" derivation="None" name="[none:segment:nk]" pivot="key" type="nominal" />
+            <column-instance column="[diff_pp]" derivation="Sum" name="[sum:diff_pp:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter class="categorical" column="[federated.9703c9a6259c36c00a5d8d81220a].[none:Calculation_833196606068161250:nk]">
+            <groupfilter function="member" level="[none:Calculation_833196606068161250:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+          </filter>
+          <slices>
+            <column>[federated.9703c9a6259c36c00a5d8d81220a].[none:Calculation_833196606068161250:nk]</column>
+          </slices>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+          </pane>
+        </panes>
+        <rows>[federated.9703c9a6259c36c00a5d8d81220a].[none:segment:nk]</rows>
+        <cols>[federated.9703c9a6259c36c00a5d8d81220a].[sum:diff_pp:qk]</cols>
+      </table>
+      <simple-id uuid="{58753F68-B74A-50CF-82BE-6589B1BD6548}" />
+    </worksheet>
+    <worksheet name="Conversion by segment">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="conversion_by_segment" name="federated.485f6aefcc5ed704861de4cb3f68" />
+            <datasource name="Parameters" />
+          </datasources>
+          <datasource-dependencies datasource="Parameters">
+            <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+              <calculation class="tableau" formula="&quot;All&quot;" />
+              <members>
+                <member value="&quot;All&quot;" />
+                <member value="&quot;Country&quot;" />
+                <member value="&quot;Day type&quot;" />
+                <member value="&quot;Test week&quot;" />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource="federated.485f6aefcc5ed704861de4cb3f68">
+            <column caption="Show Segment Type" datatype="boolean" name="[Calculation_932201977891927153]" role="dimension" type="nominal">
+              <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+            </column>
+            <column datatype="real" name="[conversion_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+            <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+            <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+            <column datatype="string" name="[test_group]" role="dimension" type="nominal" />
+            <column-instance column="[Calculation_932201977891927153]" derivation="None" name="[none:Calculation_932201977891927153:nk]" pivot="key" type="nominal" />
+            <column-instance column="[segment]" derivation="None" name="[none:segment:nk]" pivot="key" type="nominal" />
+            <column-instance column="[test_group]" derivation="None" name="[none:test_group:nk]" pivot="key" type="nominal" />
+            <column-instance column="[conversion_rate]" derivation="Sum" name="[sum:conversion_rate:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter class="categorical" column="[federated.485f6aefcc5ed704861de4cb3f68].[none:Calculation_932201977891927153:nk]">
+            <groupfilter function="member" level="[none:Calculation_932201977891927153:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+          </filter>
+          <slices>
+            <column>[federated.485f6aefcc5ed704861de4cb3f68].[none:Calculation_932201977891927153:nk]</column>
+          </slices>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Bar" />
+            <encodings>
+              <color column="[federated.485f6aefcc5ed704861de4cb3f68].[none:test_group:nk]" />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.485f6aefcc5ed704861de4cb3f68].[none:segment:nk] / [federated.485f6aefcc5ed704861de4cb3f68].[none:test_group:nk])</rows>
+        <cols>[federated.485f6aefcc5ed704861de4cb3f68].[sum:conversion_rate:qk]</cols>
+      </table>
+      <simple-id uuid="{E8CCC4AD-F8B0-5AC2-A817-9B80A2EB27BB}" />
+    </worksheet>
+    <worksheet name="Daily trend">
+      <table>
+        <view>
+          <datasources>
+            <datasource caption="daily_conversion" name="federated.a1be0ce729a3f78201e734da8258" />
+            <datasource name="Parameters" />
+          </datasources>
+          <datasource-dependencies datasource="Parameters">
+            <column caption="Segment Type" datatype="string" name="[Parameter 1]" param-domain-type="list" role="measure" type="nominal" value="&quot;All&quot;">
+              <calculation class="tableau" formula="&quot;All&quot;" />
+              <members>
+                <member value="&quot;All&quot;" />
+                <member value="&quot;Country&quot;" />
+                <member value="&quot;Day type&quot;" />
+                <member value="&quot;Test week&quot;" />
+              </members>
+            </column>
+          </datasource-dependencies>
+          <datasource-dependencies datasource="federated.a1be0ce729a3f78201e734da8258">
+            <column caption="Show Segment Type" datatype="boolean" name="[Calculation_976660140413149974]" role="dimension" type="nominal">
+              <calculation class="tableau" formula="[segment_type] = [Parameters].[Parameter 1]" />
+            </column>
+            <column datatype="real" name="[conversion_rate]" role="measure" type="quantitative" default-format="p0.00%" />
+            <column datatype="date" name="[date]" role="dimension" type="ordinal" />
+            <column datatype="string" name="[segment]" role="dimension" type="nominal" />
+            <column datatype="string" name="[segment_type]" role="dimension" type="nominal" />
+            <column datatype="string" name="[test_group]" role="dimension" type="nominal" />
+            <column-instance column="[Calculation_976660140413149974]" derivation="None" name="[none:Calculation_976660140413149974:nk]" pivot="key" type="nominal" />
+            <column-instance column="[date]" derivation="None" name="[none:date:qk]" pivot="key" type="quantitative" />
+            <column-instance column="[segment]" derivation="None" name="[none:segment:nk]" pivot="key" type="nominal" />
+            <column-instance column="[test_group]" derivation="None" name="[none:test_group:nk]" pivot="key" type="nominal" />
+            <column-instance column="[conversion_rate]" derivation="Sum" name="[sum:conversion_rate:qk]" pivot="key" type="quantitative" />
+          </datasource-dependencies>
+          <filter class="categorical" column="[federated.a1be0ce729a3f78201e734da8258].[none:Calculation_976660140413149974:nk]">
+            <groupfilter function="member" level="[none:Calculation_976660140413149974:nk]" member="true" user:ui-domain="relevant" user:ui-enumeration="inclusive" user:ui-marker="enumerate" />
+          </filter>
+          <slices>
+            <column>[federated.a1be0ce729a3f78201e734da8258].[none:Calculation_976660140413149974:nk]</column>
+          </slices>
+          <aggregation value="true" />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option="selection-relaxation-allow">
+            <view>
+              <breakdown value="auto" />
+            </view>
+            <mark class="Line" />
+            <encodings>
+              <color column="[federated.a1be0ce729a3f78201e734da8258].[none:test_group:nk]" />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>([federated.a1be0ce729a3f78201e734da8258].[none:segment:nk] * [federated.a1be0ce729a3f78201e734da8258].[sum:conversion_rate:qk])</rows>
+        <cols>[federated.a1be0ce729a3f78201e734da8258].[none:date:qk]</cols>
+      </table>
+      <simple-id uuid="{1F57F3FC-DB82-5CE3-AB2D-0EAB90B94C3F}" />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name="A/B test dashboard">
+      <style />
+      <size maxheight="900" maxwidth="1200" minheight="900" minwidth="1200" />
+      <zones>
+        <zone h="100000" id="4" type-v2="layout-basic" w="100000" x="0" y="0">
+          <zone h="98000" id="7" param="horz" type-v2="layout-flow" w="98400" x="800" y="1000">
+            <zone h="98000" id="5" type-v2="layout-basic" w="82400" x="800" y="1000">
+              <zone forceUpdate="true" h="10000" id="10" type-v2="text" w="82400" x="800" y="1000">
+                <formatted-text>
+                  <run bold="true" fontsize="14">Landing-page A/B test: don't launch the new page</run>
+                  <run>Æ
+</run>
+                  <run fontsize="10">New page 11.87% vs old page 12.03% conversion. Difference −0.16 points (95% CI −0.39 to +0.08), p = 0.198 (two-proportion z-test, 288,586 users).</run>
+                </formatted-text>
+                <zone-style>
+                  <format attr="border-color" value="#000000" />
+                  <format attr="border-style" value="none" />
+                  <format attr="border-width" value="0" />
+                  <format attr="margin" value="4" />
+                </zone-style>
+              </zone>
+              <zone h="44000" id="3" name="Lift by segment" w="82400" x="800" y="11000">
+                <zone-style>
+                  <format attr="border-color" value="#000000" />
+                  <format attr="border-style" value="none" />
+                  <format attr="border-width" value="0" />
+                  <format attr="margin" value="4" />
+                </zone-style>
+              </zone>
+              <zone h="44000" id="6" name="Conversion by segment" w="41200" x="800" y="55000">
+                <zone-style>
+                  <format attr="border-color" value="#000000" />
+                  <format attr="border-style" value="none" />
+                  <format attr="border-width" value="0" />
+                  <format attr="margin" value="4" />
+                </zone-style>
+              </zone>
+              <zone h="44000" id="8" name="Daily trend" w="41200" x="42000" y="55000">
+                <zone-style>
+                  <format attr="border-color" value="#000000" />
+                  <format attr="border-style" value="none" />
+                  <format attr="border-width" value="0" />
+                  <format attr="margin" value="4" />
+                </zone-style>
+              </zone>
+            </zone>
+            <zone fixed-size="160" h="98000" id="9" is-fixed="true" param="vert" type-v2="layout-flow" w="16000" x="83200" y="1000">
+              <zone h="8000" id="11" param="[Parameters].[Parameter 1]" type-v2="paramctrl" w="16000" x="83200" y="1000">
+                <zone-style>
+                  <format attr="border-color" value="#000000" />
+                  <format attr="border-style" value="none" />
+                  <format attr="border-width" value="0" />
+                  <format attr="margin" value="4" />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr="border-color" value="#000000" />
+            <format attr="border-style" value="none" />
+            <format attr="border-width" value="0" />
+            <format attr="margin" value="4" />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid="{2107844D-EE63-5788-8399-BB41B9E4072F}" />
+    </dashboard>
+  </dashboards>
+  <windows source-height="30">
+    <window class="dashboard" maximized="true" name="A/B test dashboard">
+      <viewpoints>
+        <viewpoint name="Lift by segment" />
+        <viewpoint name="Conversion by segment" />
+        <viewpoint name="Daily trend" />
+      </viewpoints>
+      <active id="-1" />
+      <simple-id uuid="{761C935E-A078-57CC-9F26-1572D0EFF3CE}" />
+    </window>
+    <window class="worksheet" name="Lift by segment">
+      <cards>
+        <edge name="left">
+          <strip size="160">
+            <card type="pages" />
+            <card type="filters" />
+            <card type="marks" />
+          </strip>
+        </edge>
+        <edge name="top">
+          <strip size="2147483647">
+            <card type="columns" />
+          </strip>
+          <strip size="2147483647">
+            <card type="rows" />
+          </strip>
+          <strip size="31">
+            <card type="title" />
+          </strip>
+        </edge>
+        <edge name="right">
+          <strip size="160">
+            <card param="[Parameters].[Parameter 1]" type="parameter" />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{C7516AF3-B025-5498-9366-4DCE6C1D04C0}" />
+    </window>
+    <window class="worksheet" name="Conversion by segment">
+      <cards>
+        <edge name="left">
+          <strip size="160">
+            <card type="pages" />
+            <card type="filters" />
+            <card type="marks" />
+          </strip>
+        </edge>
+        <edge name="top">
+          <strip size="2147483647">
+            <card type="columns" />
+          </strip>
+          <strip size="2147483647">
+            <card type="rows" />
+          </strip>
+          <strip size="31">
+            <card type="title" />
+          </strip>
+        </edge>
+        <edge name="right">
+          <strip size="160">
+            <card param="[Parameters].[Parameter 1]" type="parameter" />
+            <card param="[federated.485f6aefcc5ed704861de4cb3f68].[none:test_group:nk]" type="color" pane-specification-id="0" />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{A64EA704-44BB-566B-8B94-0F37B6703E24}" />
+    </window>
+    <window class="worksheet" name="Daily trend">
+      <cards>
+        <edge name="left">
+          <strip size="160">
+            <card type="pages" />
+            <card type="filters" />
+            <card type="marks" />
+          </strip>
+        </edge>
+        <edge name="top">
+          <strip size="2147483647">
+            <card type="columns" />
+          </strip>
+          <strip size="2147483647">
+            <card type="rows" />
+          </strip>
+          <strip size="31">
+            <card type="title" />
+          </strip>
+        </edge>
+        <edge name="right">
+          <strip size="160">
+            <card param="[Parameters].[Parameter 1]" type="parameter" />
+            <card param="[federated.a1be0ce729a3f78201e734da8258].[none:test_group:nk]" type="color" pane-specification-id="0" />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid="{BF7318E7-1BE3-5B48-8D19-D61A3CF24136}" />
+    </window>
+  </windows>
+  <explain-data enabled-for-viewer="true" extreme-values-enabled-for-all="true">
+    <explanation-types />
+  </explain-data>
+</workbook>
