@@ -2,6 +2,8 @@
 
 A SQL-first analysis of ~100k orders from Olist, a Brazilian online marketplace, plus a landing-page A/B test. All business logic is written in DuckDB SQL (see [`sql/`](sql/)), so every number in this README can be traced back to a query.
 
+**Live dashboard:** [Landing Page A/B Test on Tableau Public](https://public.tableau.com/app/profile/qingyao.yang/viz/LandingPageABTest_17948802889870/ABtestdashboard)
+
 **Skills shown:** CTEs, joins at the right grain, window functions (`LAG`, `RANK`, `ROW_NUMBER`, running totals, `CORR() OVER`), cohort analysis, hypothesis testing, power analysis, and a documented data-quality audit.
 
 ---
@@ -45,7 +47,7 @@ Analysis window: **Jan 2017 – Aug 2018** (97,905 orders, 94,703 customers, R$1
 
 **Recommendation: don't launch.** The new page converted at **11.87% vs 12.03%** for the old page: −0.16 points (−1.3% relative), p = 0.20 (two-proportion z-test, 288,586 users).
 
-The 95% confidence interval for the difference is **−0.39 to +0.08 points**, so even the best plausible case is a gain of about 0.7%, which isn't worth a rollout. The test could detect a 2.8% relative lift at 80% power. The split passed a sample-ratio check (p = 0.92), there was no novelty spike, and the result held under an alternative cleaning rule. Full report: [docs/ab_test_report.md](docs/ab_test_report.md).
+The 95% confidence interval for the difference is **−0.39 to +0.08 points**, so even the best plausible case is a gain of about 0.7%, which isn't worth a rollout. The test could detect a 2.8% relative lift at 80% power. The split passed a sample-ratio check (p = 0.92), there was no novelty spike, and the result held under an alternative cleaning rule. Full report: [docs/ab_test_report.md](docs/ab_test_report.md). Interactive version: [Tableau Public dashboard](https://public.tableau.com/app/profile/qingyao.yang/viz/LandingPageABTest_17948802889870/ABtestdashboard), with the lift, conversion rates and daily trend by country, weekday/weekend and test week.
 
 Method:
 1. **Cleaning** ([sql/ab_01_clean.sql](sql/ab_01_clean.sql)):
