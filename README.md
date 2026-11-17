@@ -102,4 +102,5 @@ sql/ab_02_summary.sql     A/B descriptive tables
 ab_test.py                z-test, confidence intervals, power
 run_sql.py                runs the SQL and exports CSVs (no analysis logic)
 docs/                     audit, A/B report, SQL walkthrough, interview prep
+tableau/                  A/B dashboard data: prep script, CSVs, Tableau build guide
 ```

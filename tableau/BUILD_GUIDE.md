@@ -8,38 +8,42 @@ To regenerate the files: `python tableau/make_tableau_data.py`
 
 | File | One row per | Columns |
 |---|---|---|
-| `funnel.csv` | segment, test group, funnel step | `segment_type`, `segment`, `test_group`, `step_order`, `step_name`, `users`, `pct_of_group` |
+| `lift_by_segment.csv` | segment | `segment_type`, `segment`, `control_rate`, `treatment_rate`, `diff_pp`, `diff_ci_lower`, `diff_ci_upper`, `p_value` |
 | `conversion_by_segment.csv` | segment, test group | `segment_type`, `segment`, `test_group`, `users`, `conversions`, `conversion_rate`, `ci_lower`, `ci_upper` |
 | `daily_conversion.csv` | segment, test group, day | `segment_type`, `segment`, `test_group`, `date`, `users`, `conversions`, `conversion_rate` |
+| `funnel.csv` (not used in this dashboard) | segment, test group, funnel step | `segment_type`, `segment`, `test_group`, `step_order`, `step_name`, `users`, `pct_of_group` |
 
 Values you'll see:
 
 - `test_group`: `control` (old page) or `treatment` (new page).
 - `segment_type`: `All`, `Country`, `Day type`, `Test week`.
 - `segment`: `All`; `US`, `UK`, `CA`; `Weekday`, `Weekend`; `Week 1 (Jan 2-8)` to `Week 4 (Jan 23-24)`.
-- All rates (`conversion_rate`, `ci_lower`, `ci_upper`, `pct_of_group`) are fractions between 0 and 1. Format them as percentages in Tableau.
+- Rates (`conversion_rate`, `ci_lower`, `ci_upper`, `control_rate`, `treatment_rate`, `pct_of_group`) are fractions between 0 and 1. Format them as percentages in Tableau.
+- `diff_pp`, `diff_ci_lower` and `diff_ci_upper` are in **percentage points**, treatment minus control. A value of `-0.16` means the new page converted 0.16 points lower. The interval is a 95% Wald interval.
+- `p_value` is from a two-sided, two-proportion z-test.
 
 **The one rule that keeps the numbers right:** every chart must show exactly one `segment_type` at a time, and must have `segment` in the view. Each segment type is a complete copy of all users, so mixing two types would double-count. The selector in step 2 enforces this.
 
-**What is not here:** there is no device segment and no retention file. The data has one landing-page visit per user, no device column and no signup date. The funnel has only two steps because the data records only two.
+**What is not here:** there is no device segment and no retention file. The data has one landing-page visit per user, no device column and no signup date. `funnel.csv` is still produced, but the dashboard doesn't use it: the data records only two steps (visited, converted), so a funnel chart adds nothing the conversion rate doesn't already show.
 
 ---
 
 ## Step 1: Connect the three files
 
-1. Open Tableau Public. Under **Connect**, choose **Text file** and open `funnel.csv`.
+1. Open Tableau Public. Under **Connect**, choose **Text file** and open `lift_by_segment.csv`.
 2. Go to **Data → New Data Source → Text file** and open `conversion_by_segment.csv`.
 3. Repeat for `daily_conversion.csv`.
 
 Keep them as three separate data sources. Don't drag them onto the same canvas to join them.
 
-For each data source, set the formats once (right-click the field → **Default Properties → Number Format → Percentage**, 2 decimals):
+For each data source, set the formats once (right-click the field → **Default Properties → Number Format**):
 
-- `conversion_by_segment`: `conversion_rate`, `ci_lower`, `ci_upper`
-- `funnel`: `pct_of_group`
-- `daily_conversion`: `conversion_rate`
-
-In `funnel`, drag `step_order` from Measures up to Dimensions if Tableau put it under Measures.
+- `lift_by_segment`:
+  - `control_rate`, `treatment_rate`: **Percentage**, 2 decimals
+  - `diff_pp`, `diff_ci_lower`, `diff_ci_upper`: **Custom**, with the format `+0.00" pp";-0.00" pp"`
+  - `p_value`: **Number (Custom)**, 3 decimals
+- `conversion_by_segment`: `conversion_rate`, `ci_lower`, `ci_upper` as **Percentage**, 2 decimals
+- `daily_conversion`: `conversion_rate` as **Percentage**, 2 decimals
 
 ## Step 2: Create the segment selector (controls every chart)
 
@@ -56,7 +60,36 @@ A parameter works across all data sources, so this is the most reliable way to d
 3. You'll drag `Show Segment Type` to **Filters** and tick **True** on every sheet (the chart steps below remind you).
 4. Right-click the `Segment Type` parameter → **Show Parameter**.
 
-## Step 3: Chart 1, conversion rate with confidence intervals
+## Step 3: Chart 1, lift by segment
+
+Data source: **`lift_by_segment`**. Name the sheet `Lift by segment`.
+
+This is the headline chart: for each segment, how much better or worse the new page converted, with a 95% interval and a line at zero.
+
+1. Drag `Show Segment Type` to **Filters** → tick **True**.
+2. **Rows:** `segment`.
+3. **Columns:** drag `diff_pp`. On its Marks card, set the mark type to **Bar**.
+4. Create a calculated field `diff_ci_width`: `[diff_ci_upper] - [diff_ci_lower]`
+5. **Columns:** drag `diff_ci_lower` to the right of `diff_pp`. On its Marks card, set the mark type to **Gantt Bar**, then drag `diff_ci_width` to **Size**. Each Gantt bar now runs from `diff_ci_lower` to `diff_ci_upper`.
+6. Right-click the `diff_ci_lower` pill → **Dual Axis**. Then right-click the top axis → **Synchronize Axis**, and right-click it again → untick **Show Header**.
+7. Check the two Marks cards after the dual-axis step, because Tableau sometimes resets them: `SUM(diff_pp)` must be **Bar** and `SUM(diff_ci_lower)` must be **Gantt Bar**.
+8. Style the marks so the interval reads clearly on top of the bar:
+   - `SUM(diff_pp)` card: click **Color** and pick a light color.
+   - `SUM(diff_ci_lower)` card: click **Color** and pick a dark color, then click **Size** and move the slider left so the interval is a thin line.
+9. **Reference line at 0:** right-click the bottom axis → **Add Reference Line**. Choose **Line**, scope **Entire Table**, value **Constant** `0`, label **None**, and a solid dark line.
+10. Right-click the bottom axis → **Edit Axis** and set the title to `Treatment minus control (percentage points)`.
+11. **Tooltip** (All Marks card): add `control_rate`, `treatment_rate` and `p_value`.
+
+How to read it:
+
+- The bar is the difference in conversion rate. Left of zero means the new page converted worse; right of zero means better.
+- The thin dark bar is the 95% interval for that difference.
+- If the interval crosses the zero line, the difference is not statistically significant at the 5% level. If the whole interval sits on one side of zero, it is.
+- The interval and `p_value` use slightly different standard errors (unpooled for the interval, pooled for the test), so they can disagree by a hair when a result sits right on the boundary.
+
+Each mark is exactly one row of the file, so `SUM` and `AVG` give the same value. Leave the default.
+
+## Step 4: Chart 2, conversion rate with confidence intervals
 
 Data source: **`conversion_by_segment`**. Name the sheet `Conversion by segment`.
 
@@ -71,22 +104,9 @@ Data source: **`conversion_by_segment`**. Name the sheet `Conversion by segment`
 9. Make the Gantt bars thin: on the `ci_lower` Marks card, click **Size** and move the slider left.
 10. **Tooltip** (All Marks card): add `users` and `conversions`.
 
-How to read it: the circle is the conversion rate and the bar is its 95% Wilson interval. When the control and treatment bars overlap, the difference for that segment is within the noise.
+How to read it: the circle is each group's conversion rate and the bar is its 95% Wilson interval. This chart shows the level of each rate and how precisely it is measured.
 
-Each mark is exactly one row of the file, so `SUM` and `AVG` give the same value. Leave the default.
-
-## Step 4: Chart 2, funnel
-
-Data source: **`funnel`**. Name the sheet `Funnel`.
-
-1. Drag `Show Segment Type` to **Filters** → tick **True**.
-2. **Rows:** `segment`, `step_name`, `test_group`.
-3. Sort the steps: right-click `step_name` on Rows → **Sort** → **Field** → `step_order`, **Ascending**, aggregation **Minimum**.
-4. **Columns:** `users` (SUM).
-5. **Color:** `test_group`. Assign the same two colors as chart 1.
-6. **Label:** drag `pct_of_group` to **Label**.
-
-The funnel has two steps: `Visited landing page` (100%) and `Converted`.
+Don't use overlap between the two bars to judge significance. If the bars don't overlap, the difference is significant. If they do overlap, the difference may still be significant, because the interval for a difference is narrower than the two separate intervals suggest. Weekend is the example in this data: the two bars overlap, yet the difference has p = 0.046. Use the lift chart to judge whether a difference is real.
 
 ## Step 5: Chart 3, daily trend
 
@@ -95,7 +115,7 @@ Data source: **`daily_conversion`**. Name the sheet `Daily trend`.
 1. Drag `Show Segment Type` to **Filters** → tick **True**.
 2. **Columns:** right-click-drag `date` to Columns and choose **date (Continuous)**, the first option, so you get one point per day.
 3. **Rows:** `segment`, then `conversion_rate` (SUM). You get one pane per segment.
-4. **Color:** `test_group`, same two colors.
+4. **Color:** `test_group`, with the same two colors as chart 2.
 5. Right-click the rate axis → **Edit Axis** → untick **Include zero**.
 6. **Tooltip:** add `users` and `conversions`.
 
@@ -104,17 +124,17 @@ Daily rates are noisy. With about 6,500 users per group per day, a single day mo
 ## Step 6: Assemble the dashboard
 
 1. **Dashboard → New Dashboard**. Set **Size** to a fixed 1200 × 900, or **Automatic**.
-2. Drag in `Conversion by segment` (top), then `Funnel` and `Daily trend` (bottom, side by side).
+2. Drag in `Lift by segment` (top), then `Conversion by segment` and `Daily trend` (bottom, side by side).
 3. The `Segment Type` control appears on the right. If it doesn't, click any sheet's drop-down arrow → **Parameters → Segment Type**. Set it to display as **Single Value (list)**.
 4. Add a **Text** object at the top with the headline result:
    - New page 11.87% vs old page 12.03% conversion
-   - Difference −0.16 points, p = 0.198 (two-proportion z-test, 288,586 users)
+   - Difference −0.16 points (95% CI −0.39 to +0.08), p = 0.198 (two-proportion z-test, 288,586 users)
    - Recommendation: don't launch
 5. Test the selector: switch through all four values and confirm all three charts change together.
 
 ### Optional: narrow to specific segments (for example, US only)
 
-1. On the `Conversion by segment` sheet, drag `segment` to **Filters** and select all values.
+1. On the `Lift by segment` sheet, drag `segment` to **Filters** and select all values.
 2. Right-click the filter → **Show Filter**. On the filter card's drop-down, choose **Only Relevant Values**.
 3. Right-click the filter → **Apply to Worksheets → All Using Related Data Sources**.
 
@@ -130,20 +150,20 @@ This needs Tableau to treat `segment` as the same field in all three sources. It
 
 ## Reading the segments honestly
 
-The segment charts are exploratory. Ten comparisons are shown (overall plus nine segments), so one or two will look "significant" by chance alone.
+The segment charts are exploratory. Ten comparisons are shown (overall plus nine segments), so one "significant" result at the 5% level is not surprising by chance alone.
 
-| Segment | Control | Treatment | Difference |
-|---|---|---|---|
-| All | 12.03% | 11.87% | −0.16 pp |
-| US | 12.05% | 11.83% | −0.22 pp |
-| UK | 11.99% | 12.11% | +0.12 pp |
-| CA | 11.87% | 11.22% | −0.66 pp |
-| Weekday | 11.97% | 11.93% | −0.04 pp |
-| Weekend | 12.19% | 11.72% | −0.46 pp |
+| Segment | Control | Treatment | Difference (95% CI) | p-value |
+|---|---|---|---|---|
+| All | 12.03% | 11.87% | −0.16 pp (−0.39 to +0.08) | 0.198 |
+| US | 12.05% | 11.83% | −0.22 pp (−0.50 to +0.07) | 0.133 |
+| UK | 11.99% | 12.11% | +0.12 pp (−0.36 to +0.60) | 0.622 |
+| CA | 11.87% | 11.22% | −0.66 pp (−1.70 to +0.39) | 0.218 |
+| Weekday | 11.97% | 11.93% | −0.04 pp (−0.32 to +0.24) | 0.777 |
+| Weekend | 12.19% | 11.72% | −0.46 pp (−0.91 to −0.01) | 0.046 |
 
-- No segment shows a clear win for the new page. UK is the only one where it is ahead, and that gap is well within its interval.
-- Weekend is the largest gap with enough users to matter (z = −2.0, p ≈ 0.05 before any correction for multiple comparisons). Treat it as a question for the next test, not a finding.
-- The four test weeks all show the new page slightly behind (−0.12 to −0.25 pp), so there is no novelty effect.
+- No segment shows a win for the new page. UK is the only one where it is ahead, and its interval comfortably includes zero.
+- Weekend is the only segment whose interval excludes zero, and it points against the new page. With ten comparisons and no correction, treat it as a question for the next test, not a finding.
+- The four test weeks all show the new page slightly behind (−0.12 to −0.25 pp, p between 0.43 and 0.58), so there is no novelty effect.
 
 These numbers support the original recommendation: don't launch.
 
