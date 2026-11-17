@@ -1,0 +1,41 @@
+segment_type,segment,test_group,step_order,step_name,users,pct_of_group
+All,All,control,1,Visited landing page,144267,1.0
+All,All,control,2,Converted,17349,0.12025619164465887
+All,All,treatment,1,Visited landing page,144319,1.0
+All,All,treatment,2,Converted,17131,0.11870231916795432
+Country,CA,control,1,Visited landing page,7142,1.0
+Country,CA,control,2,Converted,848,0.11873424810977318
+Country,CA,treatment,1,Visited landing page,7257,1.0
+Country,CA,treatment,2,Converted,814,0.11216756235358964
+Country,UK,control,1,Visited landing page,36105,1.0
+Country,UK,control,2,Converted,4328,0.11987259382357014
+Country,UK,treatment,1,Visited landing page,35856,1.0
+Country,UK,treatment,2,Converted,4341,0.12106760374832665
+Country,US,control,1,Visited landing page,101020,1.0
+Country,US,control,2,Converted,12173,0.12050089091269056
+Country,US,treatment,1,Visited landing page,101206,1.0
+Country,US,treatment,2,Converted,11976,0.11833290516372547
+Day type,Weekday,control,1,Visited landing page,104637,1.0
+Day type,Weekday,control,2,Converted,12520,0.11965174842550914
+Day type,Weekday,treatment,1,Visited landing page,104897,1.0
+Day type,Weekday,treatment,2,Converted,12509,0.11925031221102605
+Day type,Weekend,control,1,Visited landing page,39630,1.0
+Day type,Weekend,control,2,Converted,4829,0.12185213222306333
+Day type,Weekend,treatment,1,Visited landing page,39422,1.0
+Day type,Weekend,treatment,2,Converted,4622,0.11724417837755569
+Test week,Week 1 (Jan 2-8),control,1,Visited landing page,42035,1.0
+Test week,Week 1 (Jan 2-8),control,2,Converted,5015,0.11930534078743904
+Test week,Week 1 (Jan 2-8),treatment,1,Visited landing page,42279,1.0
+Test week,Week 1 (Jan 2-8),treatment,2,Converted,4981,0.11781262565339767
+Test week,Week 2 (Jan 9-15),control,1,Visited landing page,45995,1.0
+Test week,Week 2 (Jan 9-15),control,2,Converted,5494,0.11944776606152843
+Test week,Week 2 (Jan 9-15),treatment,1,Visited landing page,45968,1.0
+Test week,Week 2 (Jan 9-15),treatment,2,Converted,5434,0.11821266968325791
+Test week,Week 3 (Jan 16-22),control,1,Visited landing page,45829,1.0
+Test week,Week 3 (Jan 16-22),control,2,Converted,5559,0.12129874097187371
+Test week,Week 3 (Jan 16-22),treatment,1,Visited landing page,45826,1.0
+Test week,Week 3 (Jan 16-22),treatment,2,Converted,5481,0.11960459128005936
+Test week,Week 4 (Jan 23-24),control,1,Visited landing page,10408,1.0
+Test week,Week 4 (Jan 23-24),control,2,Converted,1281,0.1230784012298232
+Test week,Week 4 (Jan 23-24),treatment,1,Visited landing page,10246,1.0
+Test week,Week 4 (Jan 23-24),treatment,2,Converted,1235,0.12053484286550849
