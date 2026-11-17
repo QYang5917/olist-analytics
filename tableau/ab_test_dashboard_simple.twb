@@ -340,7 +340,7 @@
         <zone h="100000" id="4" type-v2="layout-basic" w="100000" x="0" y="0">
           <zone h="98000" id="7" param="horz" type-v2="layout-flow" w="98400" x="800" y="1000">
             <zone h="98000" id="5" type-v2="layout-basic" w="82400" x="800" y="1000">
-              <zone forceUpdate="true" h="10000" id="10" type-v2="text" w="82400" x="800" y="1000">
+              <zone forceUpdate="true" h="9000" id="10" type-v2="text" w="82400" x="800" y="1000">
                 <formatted-text>
                   <run bold="true" fontsize="14">Landing-page A/B test: don't launch the new page</run>
                   <run>Æ
@@ -354,7 +354,7 @@
                   <format attr="margin" value="4" />
                 </zone-style>
               </zone>
-              <zone h="44000" id="3" name="Lift by segment" w="82400" x="800" y="11000">
+              <zone h="30000" id="3" name="Lift by segment" w="82400" x="800" y="10000">
                 <zone-style>
                   <format attr="border-color" value="#000000" />
                   <format attr="border-style" value="none" />
@@ -362,7 +362,7 @@
                   <format attr="margin" value="4" />
                 </zone-style>
               </zone>
-              <zone h="44000" id="6" name="Conversion by segment" w="41200" x="800" y="55000">
+              <zone h="59000" id="6" name="Conversion by segment" w="41200" x="800" y="40000">
                 <zone-style>
                   <format attr="border-color" value="#000000" />
                   <format attr="border-style" value="none" />
@@ -370,7 +370,7 @@
                   <format attr="margin" value="4" />
                 </zone-style>
               </zone>
-              <zone h="44000" id="8" name="Daily trend" w="41200" x="42000" y="55000">
+              <zone h="59000" id="8" name="Daily trend" w="41200" x="42000" y="40000">
                 <zone-style>
                   <format attr="border-color" value="#000000" />
                   <format attr="border-style" value="none" />
